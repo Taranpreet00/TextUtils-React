@@ -28,11 +28,7 @@ export default function Textform(props) {
         props.showalert('Extra spaces removed', 'success');
     }
 
-    const [text, setText] = useState('Enter text here');
-    var words = text.split(' ');
-    if(words[words.length-1] === ''){
-        words.pop();
-    }
+    const [text, setText] = useState('');
   return (
     <>
         <div className="container">
@@ -40,16 +36,16 @@ export default function Textform(props) {
             <div className="mb-3">
                 <textarea className="form-control" value={text} style={{background: props.mode==='dark'? '#495057': 'white', color: props.mode === 'dark'? 'white': 'black'}} onChange={handleOnChange} id="myBox" rows="8"></textarea>
             </div>
-            <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
-            <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
-            <button className="btn btn-primary mx-1" onClick={handleClearClick}>Clear Text</button>
-            <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
-            <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+            <button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handleUpClick}>Convert to Uppercase</button>
+            <button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handleLoClick}>Convert to Lowercase</button>
+            <button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handleClearClick}>Clear Text</button>
+            <button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handleCopy}>Copy Text</button>
+            <button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handleExtraSpaces}>Remove Extra Spaces</button>
         </div>
         <div className={`container my-2 text-${props.mode === 'dark'? 'light': 'dark'}`}>
-            <h2>Your Text Summary</h2>
-            <p>{words.length} words and {text.length} characters</p>
-            <p>{0.008 * words.length} Minutes read</p>
+            <h2>Your Text Summary</h2> 
+            <p>{text.split(/\s+/).filter((element) => {return element.length > 0}).length} words and {text.length} characters</p>
+            <p>{0.008 * text.split(/\s+/).filter((element) => {return element.length > 0}).length} Minutes read</p>
             <h2>Preview</h2>
             <p>{text.length>0? text : 'Enter something to see preview'}</p>
         </div>

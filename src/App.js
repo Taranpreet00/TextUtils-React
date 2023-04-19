@@ -26,13 +26,13 @@ function App() {
       setMode('dark');
       document.body.style.backgroundColor = '#2d5264';
       showAlert('Dark Mode has been enabled', 'success');
-      document.title = "Text Utils - Dark Mode";
+      // document.title = "Text Utils - Dark Mode";
     }
     else{
       setMode('light');
       document.body.style.backgroundColor = 'white';
       showAlert('Light Mode has been enabled', 'success');
-      document.title = "Text Utils - Light Mode";
+      // document.title = "Text Utils - Light Mode";
     }
   }
   return (
@@ -41,9 +41,9 @@ function App() {
     {/* <Router> */}
       <Navbar title = "TextUtils" mode={mode} toggleMode={toggleMode}/>
       <Alert alert={alert} />
-      <div className="container my-3">
+      <div className="container my-5">
       {/* <Routes>
-          <Route exact path="/about" element={<About />}>
+          <Route exact path="/about" element={<About mode={mode}/>}>
           </Route>
           <Route exact path="/" element={<Textform heading="Enter the text to analyze" mode={mode} showalert = {showAlert}/>}>
           </Route>
